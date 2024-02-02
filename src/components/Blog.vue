@@ -3,7 +3,8 @@
     <div
       style="font-family: Inter"
       v-for="article in articles"
-      class="flex flex-col gap-1 cursor-pointer"
+      class="flex flex-col gap-1 cursor-pointer p-2.5"
+      :class="{ 'selected-article': article === selectedArticle }"
       @click="active(article)"
     >
       <div class="text-title">
@@ -42,4 +43,9 @@ onBeforeMount(async () => {
   articles.value = useStore().articles;
 });
 </script>
-<style></style>
+<style>
+.selected-article {
+  border-radius: 8px;
+  background-color: #f6f6f6;
+}
+</style>
