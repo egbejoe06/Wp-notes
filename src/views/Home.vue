@@ -34,7 +34,7 @@
         </svg>
       </div>
     </div>
-    <div>
+    <div class="flex flex-col gap-9 pt-16 pr-4">
       <Active />
     </div>
   </div>

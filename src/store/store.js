@@ -8,7 +8,7 @@ export const useStore = defineStore("store",{
     actions: {
         async fetchNews() {
           const apiUrl =
-            'https://api.worldnewsapi.com/search-news?api-key=d63b30de905647b0b7405f745cd0072c&text=sports&language=en';
+            'https://api.worldnewsapi.com/search-news?api-key=d63b30de905647b0b7405f745cd0072c&text=sports&language=en&offset=5&number=20';
     
           try {
             const response = await fetch(apiUrl);
