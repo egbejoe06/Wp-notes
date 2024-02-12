@@ -16,7 +16,11 @@
       {{ activeArticle.text }}
     </div>
   </div>
-  <div style="font-family: inter" class="flex flex-col gap-8">
+  <div
+    v-if="useStore().articles.length > 1"
+    style="font-family: inter"
+    class="flex flex-col gap-8 sd:bg-black md:bg-red-700 lg:bg-amber-500"
+  >
     <div class="flex flex-col gap-6">
       <div class="font-bold text-title">{{ comments.length }} Comments</div>
       <div v-for="comment in comments" class="flex gap-1 border-b border-border p-2">

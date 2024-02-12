@@ -1,5 +1,6 @@
 <template>
-  <div class="flex h-full">
+  <div class="sd:flex md:hidden"><Mobile /></div>
+  <div class="md:flex h-full">
     <div class="flex">
       <div><Sidemenu /></div>
       <div v-show="isBlog" class="pt-16 border-r border-border"><Blog /></div>
@@ -44,6 +45,7 @@ import { ref } from "vue";
 import Active from "../components/Active.vue";
 import Sidemenu from "../components/Sidemenu.vue";
 import Blog from "../components/Blog.vue";
+import Mobile from "../components/Mobile.vue";
 
 const isBlog = ref(true);
 

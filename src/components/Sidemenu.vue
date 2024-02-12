@@ -1,10 +1,10 @@
 <template>
   <div class="pt-12 pl-6 pr-4 bg-background flex flex-col gap-5 h-full">
-    <div class="flex gap-1.5 text-base text-primary items-center">
+    <div class="flex gap-1.5 text-base text-primary items-center sd:hidden">
       <span><img src="../assets/Vector1.png" alt="" class="h-8 w-8" /> </span>
       <span>Wp-notes</span>
     </div>
-    <div class="flex gap-3 p-2 bg-white w-56 rounded-lg h-10">
+    <div class="flex gap-3 p-2 bg-white w-56 rounded-lg h-10 sd:hidden">
       <div class="flex justify-center items-center">
         <img src="../assets/Frame.svg" alt="" />
       </div>

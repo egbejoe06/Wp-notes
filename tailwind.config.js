@@ -15,6 +15,9 @@ export default {
         textcolor:"#898989",
         title:"#303030",
         border:"#E7E7E9;"
+      },
+      screens:{
+        sd:"320px"
       }
     },
   },
