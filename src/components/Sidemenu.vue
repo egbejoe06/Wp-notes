@@ -1,18 +1,20 @@
 <template>
-  <div class="pt-12 pl-6 pr-4 bg-background flex flex-col gap-5 h-full">
-    <div class="flex gap-1.5 text-base text-primary items-center sd:hidden">
+  <div class="pt-12 pl-6 pr-4 bg-background flex flex-col gap-5 h-full sd:hidden md:flex">
+    <div class="flex gap-1.5 text-base text-primary items-center">
       <span><img src="../assets/Vector1.png" alt="" class="h-8 w-8" /> </span>
       <span>Wp-notes</span>
     </div>
-    <div class="flex gap-3 p-2 bg-white w-56 rounded-lg h-10 sd:hidden">
-      <div class="flex justify-center items-center">
+    <div class="flex gap-3 p-2 bg-white w-56 rounded-lg h-10">
+      <div class="flex justify-center items-center" @click="showSearch()">
         <img src="../assets/Frame.svg" alt="" />
       </div>
       <div>
         <input
           class="w-full outline-none text-textcolor text-xs"
           type="text"
+          v-model="search"
           placeholder="search"
+          @keyup.enter="showSearch()"
         />
       </div>
     </div>
@@ -28,5 +30,16 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { useStore } from "../store/store.js";
+
+const search = ref("");
+const store = useStore();
+
+const showSearch = () => {
+  store.updateSearchAndFetchNews(search.value);
+  console.log(store.search);
+};
+</script>
 <style></style>

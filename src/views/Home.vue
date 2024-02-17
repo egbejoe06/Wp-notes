@@ -1,9 +1,11 @@
 <template>
-  <div class="sd:flex md:hidden"><Mobile /></div>
+  <div class="sd:flex w-full md:hidden"><Mobile /></div>
   <div class="md:flex h-full">
     <div class="flex">
       <div><Sidemenu /></div>
-      <div v-show="isBlog" class="pt-16 border-r border-border"><Blog /></div>
+      <div v-show="isBlog" class="md:pt-16 border-r border-border sd:pt-0 w-full">
+        <Blog />
+      </div>
       <div @click="showBlog()" class="relative h-8 -left-4 top-48">
         <svg
           v-show="isBlog"
@@ -35,7 +37,7 @@
         </svg>
       </div>
     </div>
-    <div class="flex flex-col gap-9 pt-16 pr-4">
+    <div class="md:flex flex-col gap-9 md:pt-16 pr-4 sd:pt-0 pl-3 pr-3">
       <Active />
     </div>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-80 p-2.5 flex flex-col gap-4">
+  <div class="md:w-80 p-2.5 flex flex-col gap-4 sd:w-full">
     <div
       style="font-family: Inter"
       v-for="article in articles"
@@ -20,7 +20,7 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onBeforeMount } from "vue";
+import { ref, onMounted, onBeforeMount, watch } from "vue";
 import { useStore } from "../store/store.js";
 const articles = ref([]);
 const selectedArticle = ref(null);
@@ -34,7 +34,8 @@ const active = (article) => {
   // console.log(useStore().selectedArticle);
   // useStore().select(article);
 };
-onMounted(() => {
+onMounted(async () => {
+  await fetchNews();
   articles.value = useStore().articles;
   selectedArticle.value = useStore().selectedArticle || articles.value[0];
 });
@@ -42,6 +43,12 @@ onBeforeMount(async () => {
   await fetchNews();
   articles.value = useStore().articles;
 });
+watch(
+  () => useStore().articles,
+  (newValue) => {
+    articles.value = newValue;
+  }
+);
 </script>
 <style>
 .selected-article {

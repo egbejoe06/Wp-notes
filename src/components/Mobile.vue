@@ -1,8 +1,9 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col w-full">
     <div class="sd:p-6 flex gap-5 justify-between items-center w-full">
-      <div>
+      <div @click="showMenu()">
         <svg
+          v-if="!isMenu"
           xmlns="http://www.w3.org/2000/svg"
           width="22"
           height="17"
@@ -27,6 +28,16 @@
             stroke="white"
             stroke-width="0.2"
           />
+        </svg>
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+        >
+          <path d="M1 1.24459L17 17M1 16.7554L17 1" stroke="#303030" stroke-width="1.5" />
         </svg>
       </div>
       <div class="flex gap-1.5 text-base text-primary items-center">
@@ -65,11 +76,26 @@
         </svg>
       </div>
     </div>
-    <div>
-      <Sidemenu />
+    <div v-show="isMenu" class="pl-6">
+      <div class="flex flex-col gap-3">
+        <span class="text-textcolor flex gap-2">
+          <div class="w-1 h-5 bg-primary"></div>
+          <div>Blog</div></span
+        >
+        <span class="text-textcolor flex gap-2">
+          <div class="w-1 h-5 bg-primary"></div>
+          <div>Contacts</div></span
+        >
+      </div>
     </div>
   </div>
 </template>
 <script setup>
-import Sidemenu from "./Sidemenu.vue";
+import { ref } from "vue";
+
+const isMenu = ref(false);
+
+const showMenu = () => {
+  isMenu.value = !isMenu.value;
+};
 </script>
