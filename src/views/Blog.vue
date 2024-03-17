@@ -1,30 +1,58 @@
 <template>
-  <div v-for="article in articles.slice(0, 4)">
-    {{ article.title }} <br />
-    {{ article.content }} <br />
-    <br />
+  <div class="md:w-80 p-2.5 flex flex-col gap-4 sd:w-full">
+    <div
+      style="font-family: Inter"
+      v-for="article in articles"
+      class="flex flex-col gap-1 cursor-pointer p-2.5"
+      :class="{ 'selected-article': article === selectedArticle }"
+      @click="active(article)"
+    >
+      <div class="text-title">
+        {{ article.title }}
+      </div>
+      <div class="text-textcolor text-xs overflow-hidden text-ellipsis whitespace-nowrap">
+        {{ article.text }}
+      </div>
+      <div class="text-xs text-textcolor">
+        {{ article.publish_date }}
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeMount, watch } from "vue";
+import { useStore } from "../store/store.js";
 const articles = ref([]);
+const selectedArticle = ref(null);
 
 const fetchNews = async () => {
-  const apiKey = "6341230755904c1d92abca1f957ccfc0";
-  const apiUrl =
-    "https://api.worldnewsapi.com/search-news?api-key=d63b30de905647b0b7405f745cd0072c&text=sport&language=en";
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    console.log(data);
-    articles.value = data.news;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
+  await useStore().fetchNews();
 };
-
-onMounted(() => {
-  fetchNews();
+const active = (article) => {
+  selectedArticle.value = article;
+  useStore().selectedArticle = article;
+  // console.log(useStore().selectedArticle);
+  // useStore().select(article);
+};
+onMounted(async () => {
+  await fetchNews();
+  articles.value = useStore().articles;
+  selectedArticle.value = useStore().selectedArticle || articles.value[0];
 });
+onBeforeMount(async () => {
+  await fetchNews();
+  articles.value = useStore().articles;
+});
+watch(
+  () => useStore().articles,
+  (newValue) => {
+    articles.value = newValue;
+  }
+);
 </script>
-<style></style>
+<style>
+.selected-article {
+  border-radius: 8px;
+  background-color: #f6f6f6;
+}
+</style>

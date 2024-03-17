@@ -9,7 +9,7 @@ export const useStore = defineStore("store",{
     actions: {
         setSearch(newValue) {
           this.search = newValue;},
-          async fetchNews(searchTerm = this.search) { // Use default parameter
+          async fetchNews(searchTerm = this.search) {
             const apiUrl = `https://api.worldnewsapi.com/search-news?api-key=d63b30de905647b0b7405f745cd0072c&text=${searchTerm}&language=en&offset=5&number=20`;
             try {
                 const response = await fetch(apiUrl);

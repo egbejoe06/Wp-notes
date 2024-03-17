@@ -6,7 +6,7 @@
       <div v-show="isBlog" class="md:pt-16 border-r border-border sd:pt-0 w-full">
         <Blog />
       </div>
-      <div @click="showBlog()" class="relative h-8 -left-4 top-48">
+      <div @click="showBlog()" class="relative h-8 -left-4 top-48 cursor-pointer">
         <svg
           v-show="isBlog"
           xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
         </svg>
       </div>
     </div>
-    <div class="md:flex flex-col gap-9 md:pt-16 pr-4 sd:pt-0 pl-3 pr-3">
+    <div class="md:flex flex-col gap-9 md:pt-16 pr-4 sd:pt-0 pl-3 pr-3 pb-4">
       <Active />
     </div>
   </div>

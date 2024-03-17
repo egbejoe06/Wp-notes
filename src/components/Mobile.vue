@@ -44,7 +44,7 @@
         <span><img src="../assets/Vector1.png" alt="" class="h-8 w-8" /> </span>
         <span>Wp-notes</span>
       </div>
-      <div>
+      <div @click="openSearch()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -76,6 +76,24 @@
         </svg>
       </div>
     </div>
+    <div class="flex w-full px-4 justify-center" v-show="isSearch">
+      <div
+        class="flex gap-3 p-2 bg-border w-full justify-between items-center w-56 rounded-lg h-10"
+      >
+        <div>
+          <input
+            class="w-full outline-none text-textcolor w-72 text-xs bg-transparent"
+            type="text"
+            v-model="search"
+            placeholder="search"
+            @keyup.enter="showSearch()"
+          />
+        </div>
+        <div class="flex justify-center items-center" @click="showSearch()">
+          <img src="../assets/Frame.svg" alt="" />
+        </div>
+      </div>
+    </div>
     <div v-show="isMenu" class="pl-6">
       <div class="flex flex-col gap-3">
         <span class="text-textcolor flex gap-2">
@@ -92,10 +110,21 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import { useStore } from "../store/store.js";
 
 const isMenu = ref(false);
+const isSearch = ref(false);
+const store = useStore();
+const search = ref("");
 
+const openSearch = () => {
+  isSearch.value = !isSearch.value;
+};
 const showMenu = () => {
   isMenu.value = !isMenu.value;
+};
+const showSearch = () => {
+  store.updateSearchAndFetchNews(search.value);
+  console.log(store.search);
 };
 </script>
